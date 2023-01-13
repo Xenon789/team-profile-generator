@@ -29,6 +29,7 @@ body {
 }
 
 .card-body {
+    font-size: 35px;
     background-color: var(--secondary);
     color: var(--primary);
 }
@@ -37,5 +38,4 @@ body {
     margin: 100px auto;
     justify-content: space-evenly;
     display: flex;
-    
 }
