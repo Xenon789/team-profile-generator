@@ -2,7 +2,7 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern'); 
+const Intern = require('./lib/Intern');
 const generateHTML = require('./src/generateHTML');
 
 const addManagerPrompt = [
@@ -155,11 +155,12 @@ function addManager() {
 
 function addEmployee() {
     return inquirer.prompt(addEmployeePrompt).then(data => {
+        let employee;
         if (data.role === 'Engineer') {
             employee = new Engineer(data.name, data.id, data.email, data.github);
 
             console.log(employee);
-        } else if (data === 'Intern') {
+        } else if (data.role === 'Intern') {
             employee = new Intern(data.name, data.id, data.email, data.school);
 
             console.log(employee);
@@ -167,8 +168,8 @@ function addEmployee() {
 
         teamArr.push(employee);
                 
-        if (data.confirm) {
-            teamProfileGenerator();
+        if (data.confirmAddEmployee) {
+            return addEmployee(teamArr);
         } else {
             existingManager = false;
             return teamArr;
